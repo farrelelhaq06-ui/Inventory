@@ -43,7 +43,7 @@ export default function TransactionsPage() {
       </header>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="stat-card !p-4 flex items-center gap-4">
           <div className="p-2.5 bg-emerald-500/10 rounded-lg"><ArrowDownLeft className="w-5 h-5 text-emerald-400" /></div>
           <div>
@@ -68,8 +68,8 @@ export default function TransactionsPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-4 items-center">
-        <div className="relative flex-1 max-w-xs">
+      <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
+        <div className="relative flex-1 w-full sm:max-w-xs">
           <Search className="absolute left-3 top-3 text-slate-500 w-4 h-4" />
           <input
             className="search-input w-full"
@@ -78,7 +78,7 @@ export default function TransactionsPage() {
             onChange={e => setSearch(e.target.value)}
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap pb-2 sm:pb-0">
           {['all', 'in', 'out'].map(type => (
             <button
               key={type}

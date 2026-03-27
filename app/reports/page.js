@@ -43,8 +43,8 @@ export default function ReportsPage() {
           <h1 className="page-title">Reports & Analytics</h1>
           <p className="page-subtitle">Insights and performance metrics for your inventory.</p>
         </div>
-        <div className="flex gap-3">
-          <div className="flex gap-2">
+        <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2">
             {['weekly', 'monthly', 'yearly'].map(p => (
               <button
                 key={p}
@@ -67,7 +67,7 @@ export default function ReportsPage() {
       </header>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <MetricCard icon={<DollarSign className="w-5 h-5 text-emerald-400" />} label="Total Revenue" value="$698,324" trend="+18.2%" up />
         <MetricCard icon={<Package className="w-5 h-5 text-blue-400" />} label="Units Sold" value="1,252" trend="+12.5%" up />
         <MetricCard icon={<TrendingUp className="w-5 h-5 text-purple-400" />} label="Avg. Order Value" value="$557.77" trend="+4.8%" up />

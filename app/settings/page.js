@@ -29,14 +29,14 @@ export default function SettingsPage() {
         </div>
       </header>
 
-      <div className="flex gap-6">
+      <div className="flex flex-col lg:flex-row gap-6">
         {/* Sidebar Tabs */}
-        <div className="w-[220px] space-y-1.5 shrink-0">
+        <div className="w-full lg:w-[220px] space-y-1.5 shrink-0 flex overflow-x-auto lg:block pb-2 lg:pb-0">
           {tabs.map(tab => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all text-left ${
+              className={`lg:w-full flex-shrink-0 flex items-center gap-2 lg:gap-3 px-3 lg:px-4 py-2 lg:py-3 rounded-xl text-sm font-medium transition-all text-left ${
                 activeTab === tab.id
                   ? 'bg-emerald-500/15 text-emerald-400'
                   : 'text-slate-400 hover:bg-white/5 hover:text-white'
@@ -63,7 +63,7 @@ export default function SettingsPage() {
                   <span className="badge badge-in mt-2 inline-block">Admin</span>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="form-label">Full Name</label>
                   <input className="form-input" defaultValue="Admin User" />
@@ -134,7 +134,7 @@ export default function SettingsPage() {
                   <label className="form-label">Current Password</label>
                   <input className="form-input" type="password" placeholder="••••••••" />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="form-label">New Password</label>
                     <input className="form-input" type="password" placeholder="••••••••" />
@@ -147,7 +147,7 @@ export default function SettingsPage() {
               </div>
               <div className="border-t border-slate-700/30 pt-6 mt-6 space-y-4">
                 <h4 className="font-semibold">Two-Factor Authentication</h4>
-                <div className="flex items-center justify-between p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/30">
                   <div>
                     <div className="font-medium text-sm">Authenticator App</div>
                     <div className="text-slate-500 text-xs">Use Google Authenticator or Authy</div>
@@ -169,7 +169,7 @@ export default function SettingsPage() {
               <h3 className="text-lg font-bold">Appearance</h3>
               <div>
                 <label className="form-label">Theme</label>
-                <div className="grid grid-cols-3 gap-3 mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
                   {[
                     { id: 'dark', label: 'Dark', icon: Moon },
                     { id: 'light', label: 'Light', icon: Sun },
@@ -192,7 +192,7 @@ export default function SettingsPage() {
               </div>
               <div>
                 <label className="form-label">Accent Color</label>
-                <div className="flex gap-3 mt-2">
+                <div className="flex flex-wrap gap-3 mt-2">
                   {['#10b981', '#3b82f6', '#8b5cf6', '#ef4444', '#f59e0b', '#ec4899'].map(color => (
                     <button
                       key={color}
@@ -232,7 +232,7 @@ export default function SettingsPage() {
               </div>
               <div className="border-t border-slate-700/30 pt-6 space-y-3">
                 <h4 className="font-semibold">Database Stats</h4>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div className="p-4 bg-slate-800/30 rounded-xl border border-slate-700/20 text-center">
                     <div className="text-2xl font-bold">148</div>
                     <div className="text-slate-500 text-xs">Products</div>
@@ -257,7 +257,7 @@ export default function SettingsPage() {
 
 function ToggleItem({ label, description, on, onChange }) {
   return (
-    <div className="flex items-center justify-between p-4 bg-slate-800/30 rounded-xl border border-slate-700/20">
+    <div className="flex items-start sm:items-center justify-between gap-4 p-4 bg-slate-800/30 rounded-xl border border-slate-700/20">
       <div>
         <div className="font-medium text-sm">{label}</div>
         <div className="text-slate-500 text-xs">{description}</div>
