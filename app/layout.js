@@ -2,7 +2,7 @@
 import './globals.css';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Package, ArrowLeftRight, BarChart3, Settings, LogOut, Box, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Package, ArrowLeftRight, BarChart3, Settings, LogOut, Box, Menu, X, Search, Bell } from 'lucide-react';
 import { useState } from 'react';
 
 const navItems = [
@@ -83,10 +83,38 @@ export default function RootLayout({ children }) {
             </div>
           </aside>
 
-          {/* Main Viewport */}
-          <main className="flex-1 lg:ml-[260px] p-4 pt-24 lg:p-8 lg:pt-8 w-full max-w-[100vw] lg:max-w-[1240px] overflow-x-hidden">
-            {children}
-          </main>
+          {/* Main Content Area */}
+          <div className="flex-1 lg:ml-[260px] flex flex-col min-h-screen max-w-[100vw] lg:max-w-[1240px] overflow-x-hidden">
+            
+            {/* Global Top Header (Desktop & Large screens) */}
+            <header className="hidden lg:flex items-center justify-between p-8 pb-0 w-full z-30">
+              <div className="relative w-full max-w-md group">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4 group-focus-within:text-emerald-500 transition-colors" />
+                <input 
+                  type="text" 
+                  placeholder="Search anywhere (Press '/' to focus)" 
+                  className="w-full bg-slate-900/50 border border-slate-800 py-3 pl-11 pr-4 rounded-2xl text-sm transition-all focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 focus:bg-slate-900 shadow-sm"
+                />
+              </div>
+              
+              <div className="flex items-center gap-4">
+                <button className="relative p-2.5 bg-slate-900/50 border border-slate-800 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                  <Bell className="w-5 h-5" />
+                  <span className="absolute top-2 right-2.5 w-2 h-2 bg-rose-500 rounded-full animate-pulse"></span>
+                </button>
+                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 p-[2px] cursor-pointer hover:scale-105 transition-transform">
+                  <div className="h-full w-full bg-slate-900 rounded-[10px] overflow-hidden flex items-center justify-center">
+                    <span className="font-bold text-sm text-white">AD</span>
+                  </div>
+                </div>
+              </div>
+            </header>
+
+            {/* Main Viewport */}
+            <main className="flex-1 p-4 pt-24 lg:p-8 w-full">
+              {children}
+            </main>
+          </div>
         </div>
       </body>
     </html>
