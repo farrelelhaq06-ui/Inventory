@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LayoutDashboard, Package, ArrowLeftRight, BarChart3, Settings, LogOut, Box, Menu, X, Search, Bell } from 'lucide-react';
 import { useState } from 'react';
+import ProfileSidebar from '@/components/ProfileSidebar';
 
 const navItems = [
   { href: '/', icon: LayoutDashboard, label: 'Dashboard' },
@@ -16,6 +17,7 @@ const navItems = [
 export default function RootLayout({ children }) {
   const pathname = usePathname();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isProfileSidebarOpen, setIsProfileSidebarOpen] = useState(false);
 
   return (
     <html lang="en">
@@ -48,13 +50,40 @@ export default function RootLayout({ children }) {
 
           {/* Sidebar */}
           <aside className={`sidebar transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
-            <div className="flex items-center gap-3 mb-12">
+            <div className="flex items-center gap-3 mb-8">
               <div className="sidebar-logo">
                 <Box className="w-5 h-5 text-white" />
               </div>
               <span className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
                 InventoSys
               </span>
+            </div>
+
+            {/* Top Sidebar Features (Search & Profile) */}
+            <div className="flex flex-col gap-4 mb-8">
+              <div 
+                className="flex items-center gap-3 p-3 rounded-xl bg-slate-800/30 border border-slate-800/50 cursor-pointer hover:bg-slate-800/50 transition-colors"
+                onClick={() => setIsProfileSidebarOpen(true)}
+              >
+                <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-emerald-400 to-cyan-500 p-[2px]">
+                  <div className="h-full w-full bg-slate-900 rounded-[6px] overflow-hidden flex items-center justify-center">
+                    <span className="font-bold text-sm text-white">AD</span>
+                  </div>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-bold text-white">Admin User</span>
+                  <span className="text-xs text-emerald-400">Online</span>
+                </div>
+              </div>
+
+              <div className="relative group">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4 group-focus-within:text-emerald-500 transition-colors" />
+                <input 
+                  type="text" 
+                  placeholder="Quick search..." 
+                  className="w-full bg-slate-900/50 border border-slate-800 py-2.5 pl-10 pr-4 rounded-xl text-sm transition-all focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 shadow-sm"
+                />
+              </div>
             </div>
 
             <nav className="flex flex-col gap-1.5">
@@ -102,7 +131,10 @@ export default function RootLayout({ children }) {
                   <Bell className="w-5 h-5" />
                   <span className="absolute top-2 right-2.5 w-2 h-2 bg-rose-500 rounded-full animate-pulse"></span>
                 </button>
-                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 p-[2px] cursor-pointer hover:scale-105 transition-transform">
+                <div 
+                  className="h-10 w-10 rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 p-[2px] cursor-pointer hover:scale-105 transition-transform"
+                  onClick={() => setIsProfileSidebarOpen(true)}
+                >
                   <div className="h-full w-full bg-slate-900 rounded-[10px] overflow-hidden flex items-center justify-center">
                     <span className="font-bold text-sm text-white">AD</span>
                   </div>
@@ -116,6 +148,12 @@ export default function RootLayout({ children }) {
             </main>
           </div>
         </div>
+
+        {/* Profile Sidebar */}
+        <ProfileSidebar 
+          isOpen={isProfileSidebarOpen} 
+          onClose={() => setIsProfileSidebarOpen(false)} 
+        />
       </body>
     </html>
   );
